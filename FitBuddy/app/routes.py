@@ -75,6 +75,7 @@ def generate_workout(
             },
         )
     except Exception as exc:
+        print("WORKOUT ERROR:", repr(exc), flush=True)
         return templates.TemplateResponse(
             request=request,
             name="index.html",
