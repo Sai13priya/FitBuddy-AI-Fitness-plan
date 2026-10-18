@@ -16,7 +16,12 @@ def _client():
         raise RuntimeError(
             "GEMINI_API_KEY is missing. Add it to the .env file before generating an AI plan."
         )
-    return genai.Client(api_key=GEMINI_API_KEY)
+
+    global _gemini_client
+    if "_gemini_client" not in globals():
+        _gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+
+    return _gemini_client
 
 
 def generate_workout_gemini(
